@@ -130,7 +130,7 @@ struct ConsensusSettings
             .help("Minimum predicted accuracy in [0, 1]. Default = %default");
         parser->add_option(em + OptionNames::MinZScore)
             .type("float")
-            .set_default(-5.0)
+            .set_default(std::numeric_limits<double>::quiet_NaN())
             .help("Minimum z-score to use a subread. NaN disables this filter. Default = %default");
         parser->add_option(em + OptionNames::MaxDropFraction)
             .type("float")
@@ -141,7 +141,7 @@ struct ConsensusSettings
         parser->add_option(em + OptionNames::MinSnr)
             .type("float")
             .set_default(
-                3.75)  // See https://github.com/PacificBiosciences/pbccs/issues/86 for a more
+                0.00)  // See https://github.com/PacificBiosciences/pbccs/issues/86 for a more
                        // detailed discussion of this default.
             .help("Minimum SNR of input subreads. Default = %default");
         parser->add_option(em + OptionNames::noPolish)
@@ -149,7 +149,7 @@ struct ConsensusSettings
             .help("Only output the initial template derived from the POA (faster, less accurate).");
         parser->add_option(em + OptionNames::MinReadScore)
             .type("float")
-            .set_default(0.75)
+            .set_default(0.00)
             .help("Minimum read score of input subreads. Default = %default");
 
         // parser->add_option(em +
