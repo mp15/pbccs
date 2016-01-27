@@ -30,9 +30,9 @@ class Constants(object):
     CCS_EXE = os.environ.get("__PBTEST_CCS_EXE", "ccs")
     #
     MIN_SNR_ID = "pbccs.task_options.min_snr"
-    MIN_SNR_DEFAULT = 3.75
+    MIN_SNR_DEFAULT = 0.00
     MIN_READ_SCORE_ID = "pbccs.task_options.min_read_score"
-    MIN_READ_SCORE_DEFAULT = 0.75
+    MIN_READ_SCORE_DEFAULT = 0.00
     MAX_LENGTH_ID = "pbccs.task_options.max_length"
     MAX_LENGTH_DEFAULT = 7000
     MIN_LENGTH_ID = "pbccs.task_options.min_length"
@@ -42,7 +42,7 @@ class Constants(object):
     MIN_PREDICTED_ACCURACY_ID = "pbccs.task_options.min_predicted_accuracy"
     MIN_PREDICTED_ACCURACY_DEFAULT = 0.9
     MIN_ZSCORE_ID = "pbccs.task_options.min_zscore"
-    MIN_ZSCORE_DEFAULT = -5
+    MIN_ZSCORE_DEFAULT = "nan"
     MAX_DROP_FRAC_ID = "pbccs.task_options.max_drop_fraction"
     MAX_DROP_FRAC_DEFAULT = 0.34
     NO_POLISH_ID="pbccs.task_options.no_polish"
