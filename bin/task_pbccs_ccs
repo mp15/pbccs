@@ -42,7 +42,7 @@ class Constants(object):
     MIN_PREDICTED_ACCURACY_ID = "pbccs.task_options.min_predicted_accuracy"
     MIN_PREDICTED_ACCURACY_DEFAULT = 0.9
     MIN_ZSCORE_ID = "pbccs.task_options.min_zscore"
-    MIN_ZSCORE_DEFAULT = "nan"
+    MIN_ZSCORE_DEFAULT = -9999999
     MAX_DROP_FRAC_ID = "pbccs.task_options.max_drop_fraction"
     MAX_DROP_FRAC_DEFAULT = 0.34
     NO_POLISH_ID="pbccs.task_options.no_polish"
