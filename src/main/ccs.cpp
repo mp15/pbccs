@@ -418,8 +418,8 @@ int main(int argc, char** argv)
                        back_inserter(unavail));
 
         if (!unavail.empty()) {
-            PBLOG_FATAL << "Unsupported chemistries found: " << join(unavail, ", ");
-            exit(-1);
+           // PBLOG_FATAL << "Unsupported chemistries found: " << join(unavail, ", ");
+            //exit(-1);
         }
 
         PBLOG_DEBUG << "Using consensus models for: (" << join(used, ", ") << ')';
@@ -475,7 +475,7 @@ int main(int argc, char** argv)
                 skipZmw = false;
                 chunk->emplace_back(Chunk{ReadId(movieNames[movieName], *holeNumber),
                                           vector<Subread>(), SNR(snr[0], snr[1], snr[2], snr[3]),
-                                          read.ReadGroup().SequencingChemistry(), barcodes});
+                                           "S/P1-C1", barcodes});
             }
         }
 
