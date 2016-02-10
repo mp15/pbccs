@@ -409,8 +409,8 @@ int main(int argc, char** argv)
         try {
             used = ds.SequencingChemistries();
         } catch (InvalidSequencingChemistryException& e) {
-            PBLOG_FATAL << e.what();
-            exit(-1);
+            //PBLOG_FATAL << e.what();
+            //exit(-1);
         }
         vector<string> unavail;
 
