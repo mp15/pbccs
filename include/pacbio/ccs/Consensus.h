@@ -164,6 +164,7 @@ struct ReadType
 {
     TId Id;
     std::string Seq;
+    std::vector<uint8_t> Cov;    
     LocalContextFlags Flags;
     Accuracy ReadAccuracy;
     // TODO (move SNR and Chemistry here, eventually)

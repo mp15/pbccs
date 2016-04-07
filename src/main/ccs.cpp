@@ -522,10 +522,30 @@ int main(int argc, char** argv)
             exit(-1);
         }
 
+        // Convert to PW encoding
+        auto pws = read.PulseWidth().Data();
+        auto seq = read.Sequence();
+        if (pws.size() != seq.size()) {
+            throw std::runtime_error("Mismatch pulse width and sequence size");
+        }
+        
+        // TODO: All the translation work has to moved down to consensus core2
+        std::vector<uint8_t> covs(pws.size());
+        for(auto i =0; i< seq.size(); i++) {
+            auto cpw = pws.at(i);
+            cpw = cpw > 3 ? 2 : cpw - 1; // Truncate to within 3
+            auto bp = PacBio::Consensus::detail::TranslationTable[static_cast<unsigned char>(seq[i])];
+            auto covariate = 4 * cpw + bp; // 1-A,1-C, ... 2-A. 2-C, etc. up to 12 levels
+            if (covariate > 11) {
+                throw std::runtime_error("Translation failure");
+            }
+            covs.push_back(covariate);
+            
+        }
         chunk->back().Reads.emplace_back(
             Subread{ReadId(movieNames[movieName], *holeNumber,
                            Interval(read.QueryStart(), read.QueryEnd())),
-                    read.Sequence(), read.LocalContextFlags(), read.ReadAccuracy()});
+                    read.Sequence(), covs, read.LocalContextFlags(), read.ReadAccuracy()});
     }
 
     // run the remaining tasks
