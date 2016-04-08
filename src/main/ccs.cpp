@@ -539,8 +539,7 @@ int main(int argc, char** argv)
             if (covariate > 11) {
                 throw std::runtime_error("Translation failure");
             }
-            covs.push_back(covariate);
-            
+            covs[i] = covariate;
         }
         chunk->back().Reads.emplace_back(
             Subread{ReadId(movieNames[movieName], *holeNumber,
