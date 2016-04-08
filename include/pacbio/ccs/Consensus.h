@@ -359,8 +359,12 @@ boost::optional<PacBio::Consensus::MappedRead> ExtractMappedRead(
         return boost::none;
     }
 
+
     PacBio::Consensus::MappedRead mappedRead(
-        PacBio::Consensus::Read(read.Id, read.Seq.substr(readStart, readEnd - readStart), chem),
+        PacBio::Consensus::Read(read.Id,
+                                read.Seq.substr(readStart, readEnd - readStart),
+                                std::vector<uint8_t>(read.Cov.begin() + readStart, read.Cov.begin() + readEnd),
+                                chem),
         summary.ReverseComplementedRead ? StrandEnum::REVERSE : StrandEnum::FORWARD, tplStart,
         tplEnd, (tplStart == 0) ? true : false, (tplEnd == poaLength) ? true : false);
 
